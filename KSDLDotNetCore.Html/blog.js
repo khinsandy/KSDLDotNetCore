@@ -1,4 +1,5 @@
 const tblBlog = "blogs";
+let blogId = null;
 
 getBlogTable();
 // readBlog();
@@ -29,6 +30,7 @@ function editBlog(id)
 
     // return items[0];
     let item = items[0];
+    blogId = item.id;
     $('#txtTitle').val(item.title);
     $('#txtAuthor').val(item.author);
     $('#txtContent').val(item.content);
@@ -77,6 +79,11 @@ function updateBlog(id, title, author, content)
     const index = lst.findIndex(x => x.id === id);
     lst[index] = item;
 
+    const jsonBlog = JSON.stringify(lst);
+    localStorage.setItem(tblBlog, jsonBlog);
+
+    successMessage("Updating Successful.");
+    getBlogTable();
 }
 
 function deleteBlog(id)
@@ -121,8 +128,17 @@ $('#btnSave').click(function ()
     const title = $('#txtTitle').val();
     const author = $('#txtAuthor').val();
     const content = $('#txtContent').val();
+    if (blogId === null)
+    {
+        createBlog(title, author, content);
+    } else
+    {
+        updateBlog(blogId, title, author, content);
+        blogId = null;
+    }
 
-    createBlog(title, author, content);
+    getBlogTable();
+
 })
 
 function successMessage(message)
