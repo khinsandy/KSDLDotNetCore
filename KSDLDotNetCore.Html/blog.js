@@ -50,7 +50,7 @@ function createBlog(title, author, content)
 
     lst.push(requestModel);
     const jsonBlog = JSON.stringify(lst);
-    localStorage.setItem("tblBlog", jsonBlog);
+    localStorage.setItem(tblBlog, jsonBlog);
 
     successMessage("Saving Successful.");
     clearControls();
@@ -88,9 +88,10 @@ function updateBlog(id, title, author, content)
 
 function deleteBlog(id)
 {
+    let result = confirm("Are you sure want to delete?");
+    if (!result) return;
 
     let lst = getBlogs();
-
     const items = lst.filter(x => x.id === id);
     if (items.length == 0)
     {
@@ -100,7 +101,10 @@ function deleteBlog(id)
 
     lst = lst.filter(x => x.id !== id);
     const jsonBlog = JSON.stringify(lst)
-    localStorage.setItem("tblBlog", jsonBlog)
+    localStorage.setItem(tblBlog, jsonBlog)
+
+    successMessage("Deleting successful.");
+    getBlogTable();
 }
 
 function uuidv4()
@@ -137,7 +141,7 @@ $('#btnSave').click(function ()
         blogId = null;
     }
 
-    // getBlogTable();
+    getBlogTable();
 
 })
 
@@ -170,7 +174,7 @@ function getBlogTable()
         <tr>
             <td> 
                 <button type="button" class="btn btn-warning" onclick="editBlog('${item.id}')">Edit</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger" onclick="deleteBlog('${item.id}')">Delete</button>
             </td>
             <td>${++count}</td>
             <td>${item.title}</td>
