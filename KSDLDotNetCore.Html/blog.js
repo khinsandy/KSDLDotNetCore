@@ -112,7 +112,7 @@ function uuidv4()
 
 function getBlogs()
 {
-    const blogs = localStorage.getItem("tblBlog");
+    const blogs = localStorage.getItem(tblBlog);
     console.log(blogs);
 
     let lst = [];
@@ -137,7 +137,7 @@ $('#btnSave').click(function ()
         blogId = null;
     }
 
-    getBlogTable();
+    // getBlogTable();
 
 })
 
