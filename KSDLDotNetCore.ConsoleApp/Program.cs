@@ -1,7 +1,8 @@
-﻿using System.Data;
+﻿using KSDLDotNetCore.ConsoleApp;
+using System.Data;
 using System.Data.SqlClient;
 
-Console.WriteLine("Hello, World!");
+//Console.WriteLine("Hello, World!");
 
 // nuget
 // sqlconnection
@@ -13,32 +14,12 @@ Console.WriteLine("Hello, World!");
 
 // c# => db
 
-SqlConnectionStringBuilder stringBuilder= new SqlConnectionStringBuilder();
-stringBuilder.DataSource = ".\\SQLEXPRESS"; //server name
-stringBuilder.InitialCatalog= "DotNetTrainingBatch4"; //db name
-stringBuilder.UserID = "sa";
-stringBuilder.Password = "sasa@123";
-SqlConnection connection = new SqlConnection(stringBuilder.ConnectionString);
+AdoDotNetExample adoDotNETExample = new AdoDotNetExample();
+//adoDotNETExample.Read();
+//adoDotNETExample.Create("titile","author","content");
+//adoDotNETExample.Update(12, "string title", "string author", "string content");
+//adoDotNETExample.Delete(12);
+adoDotNETExample.Edit(12);
+adoDotNETExample.Edit(10);
 
-connection.Open();
-Console.WriteLine("connection open.");
-
-string query = "select * from Tbl_Blog";
-SqlCommand cmd=new SqlCommand(query, connection);
-SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
-DataTable dt=new DataTable();
-sqlDataAdapter.Fill(dt);
-
-connection.Close();
-Console.WriteLine("connection closed.");
-
-foreach (DataRow dr in dt.Rows)
-{
-    Console.WriteLine("Blog Id => " + dr["BlogId"]);
-    Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
-    Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
-    Console.WriteLine("Blog Content => " + dr["BlogContent"]);
-    Console.WriteLine("----------------------------------------");
-}
-
-Console.ReadKey();
+Console.ReadLine();
