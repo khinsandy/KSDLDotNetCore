@@ -115,6 +115,7 @@ namespace KSDLDotNetCore.ConsoleApp
                               ,[BlogContent] = @BlogContent
                          WHERE BlogId=@BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
+
             cmd.Parameters.AddWithValue("@BlogId", id);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
