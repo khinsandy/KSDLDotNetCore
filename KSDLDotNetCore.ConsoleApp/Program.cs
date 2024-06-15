@@ -14,12 +14,15 @@ using System.Data.SqlClient;
 
 // c# => db
 
-AdoDotNetExample adoDotNETExample = new AdoDotNetExample();
+//AdoDotNetExample adoDotNETExample = new AdoDotNetExample();
 //adoDotNETExample.Read();
 //adoDotNETExample.Create("titile","author","content");
 //adoDotNETExample.Update(12, "string title", "string author", "string content");
 //adoDotNETExample.Delete(12);
-adoDotNETExample.Edit(12);
-adoDotNETExample.Edit(10);
+//.Edit(12);
+//adoDotNETExample.Edit(10);
+
+DapperExample dapperExample= new DapperExample();
+dapperExample.Run();
 
 Console.ReadLine();
