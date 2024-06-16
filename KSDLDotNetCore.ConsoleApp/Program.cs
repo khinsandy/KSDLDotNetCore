@@ -22,7 +22,10 @@ using System.Data.SqlClient;
 //.Edit(12);
 //adoDotNETExample.Edit(10);
 
-DapperExample dapperExample= new DapperExample();
-dapperExample.Run();
+// DapperExample dapperExample= new DapperExample();
+// dapperExample.Run();
+
+EFCoreExample eFCoreExample = new EFCoreExample();
+eFCoreExample.Run();
 
 Console.ReadLine();
