@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+﻿using KSDLDotNetCore.ConsoleApp.Dtos;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSDLDotNetCore.ConsoleApp
+namespace KSDLDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
     {
@@ -15,9 +16,9 @@ namespace KSDLDotNetCore.ConsoleApp
             // Read();
             // Edit(10);
             // Edit(8);
-            // Create("titile test", "author test", "content test");
-            // Update(10, "title 3", "author 3", "content 3");
-            Delete(4);
+            Create("titile 15", "author 15", "content 15");
+            //  Update(9, "title 3", "author 3", "content 3");
+            // Delete(4);
         }
 
         private void Read()
@@ -41,7 +42,7 @@ namespace KSDLDotNetCore.ConsoleApp
             //{
             //    if (x.BlogId == id) return;
             //}
-           var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
+            var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
 
             if (item is null)
             {

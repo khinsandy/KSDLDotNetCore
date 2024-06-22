@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using KSDLDotNetCore.ConsoleApp.Dtos;
+using KSDLDotNetCore.ConsoleApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,9 +10,9 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSDLDotNetCore.ConsoleApp
+namespace KSDLDotNetCore.ConsoleApp.DapperExamples
 {
-    
+
     internal class DapperExample
     {
         public void Run()
@@ -40,13 +42,13 @@ namespace KSDLDotNetCore.ConsoleApp
 
         }
 
-            // Default value of
-            // string = null
-            // int = 0
+        // Default value of
+        // string = null
+        // int = 0
         private void Edit(int id)
         {
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            var item= db.Query<BlogDto>("select * from Tbl_Blog where BlogId=@BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
+            var item = db.Query<BlogDto>("select * from Tbl_Blog where BlogId=@BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
 
             if (item is null)
             {
@@ -63,12 +65,13 @@ namespace KSDLDotNetCore.ConsoleApp
 
         private void Create(string title, string author, string content)
         {
-            var item = new BlogDto {
+            var item = new BlogDto
+            {
 
                 BlogTitle = title,
                 BlogAuthor = author,
                 BlogContent = content,
-                
+
             };
 
             string query = @"INSERT INTO [dbo].[Tbl_Blog]
@@ -87,11 +90,11 @@ namespace KSDLDotNetCore.ConsoleApp
             Console.WriteLine(message);
         }
 
-        private void Update(int id, string title, string author, string content) 
+        private void Update(int id, string title, string author, string content)
         {
             var item = new BlogDto
             {
-                BlogId=id,
+                BlogId = id,
                 BlogTitle = title,
                 BlogAuthor = author,
                 BlogContent = content,
@@ -116,7 +119,7 @@ namespace KSDLDotNetCore.ConsoleApp
             var item = new BlogDto
             {
                 BlogId = id,
-               
+
             };
 
             string query = @"DELETE FROM [dbo].[Tbl_Blog]

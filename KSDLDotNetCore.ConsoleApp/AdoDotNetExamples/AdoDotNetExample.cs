@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSDLDotNetCore.ConsoleApp
+namespace KSDLDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExample
     {
@@ -18,10 +18,10 @@ namespace KSDLDotNetCore.ConsoleApp
             UserID = "sa",
             Password = "sasa@123",
         };
-           
+
         public void Read()
         {
-       
+
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
             connection.Open();
@@ -51,7 +51,7 @@ namespace KSDLDotNetCore.ConsoleApp
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
             connection.Open();
-           
+
             string query = "select * from Tbl_Blog where BlogId=@BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
@@ -60,26 +60,26 @@ namespace KSDLDotNetCore.ConsoleApp
             DataTable dt = new DataTable();
             sqlDataAdapter.Fill(dt);
 
-            connection.Close();            
-            
+            connection.Close();
+
             if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("No data found.");
                 return;
             }
 
-            DataRow dr=dt.Rows[0];
-            
-                Console.WriteLine("Blog Id => " + dr["BlogId"]);
-                Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
-                Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
-                Console.WriteLine("Blog Content => " + dr["BlogContent"]);
-                Console.WriteLine("----------------------------------------");
-            
+            DataRow dr = dt.Rows[0];
+
+            Console.WriteLine("Blog Id => " + dr["BlogId"]);
+            Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
+            Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
+            Console.WriteLine("Blog Content => " + dr["BlogContent"]);
+            Console.WriteLine("----------------------------------------");
+
 
         }
 
-        public void Create(string title,string author,string content)
+        public void Create(string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
@@ -92,11 +92,11 @@ namespace KSDLDotNetCore.ConsoleApp
            (@BlogTitle
            ,@BlogAuthor
            ,@BlogContent)";
-            SqlCommand cmd = new SqlCommand(query,connection);
+            SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
-            int result = cmd.ExecuteNonQuery();                      
+            int result = cmd.ExecuteNonQuery();
 
             connection.Close();
 
@@ -137,7 +137,7 @@ namespace KSDLDotNetCore.ConsoleApp
                             WHERE BlogId=@BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
-            
+
             int result = cmd.ExecuteNonQuery();
 
             connection.Close();
@@ -148,4 +148,4 @@ namespace KSDLDotNetCore.ConsoleApp
 
     }
 
-}  
+}

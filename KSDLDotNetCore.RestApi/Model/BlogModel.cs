@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSDLDotNetCore.ConsoleApp;
+namespace KSDLDotNetCore.RestApi.Model;
 
 [Table("Tbl_Blog")]
-public class BlogDto
-{ 
-    [Key] 
+public class BlogModel
+{
+    [Key]
     public int BlogId { get; set; }
-    public string BlogTitle { get; set; }
-    public string BlogAuthor { get; set; }
-    public string BlogContent { get; set; }
-   
+    public string? BlogTitle { get; set; }
+    public string? BlogAuthor { get; set; }
+    public string? BlogContent { get; set; }
+
 }
 
 //public record BlogEntity(int BlogId,string BlogTtitle,string BlogAuthor,string BlogContent);
